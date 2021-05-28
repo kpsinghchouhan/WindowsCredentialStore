@@ -12,6 +12,12 @@ function New-EncryptionCertificate {
     }
     
     process {
+        $encryptionCertificate = Get-ChildItem "Cert:\CurrentUser\My" | Where-Object { $_.Subject -eq "CN=${DnsName}" }
+        if ($null -ne $encryptionCertificate) {
+            Write-Host "Document encryption certificate already exists with DnsName: ${DnsName}"
+            Write-Host $encryptionCertificate
+            return
+        }
         $params = @{
             DnsName = $DnsName
             CertStoreLocation = "Cert:\CurrentUser\My"
