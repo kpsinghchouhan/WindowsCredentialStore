@@ -24,7 +24,12 @@ function New-EncryptionCertificate {
             KeyUsage = @("KeyEncipherment", "DataEncipherment", "KeyAgreement")
             Type = "DocumentEncryptionCert"
         }
-        New-SelfSignedCertificate @params
+        try {
+            New-SelfSignedCertificate @params
+        }
+        catch {
+            Write-Error "Error creating new document encryption certificate"
+        }
     }
     
     end {
