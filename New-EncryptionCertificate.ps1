@@ -1,3 +1,13 @@
+<#
+	.SYNOPSIS
+		This command creates a new document encryption certificate.
+	.DESCRIPTION
+		This command creates a new document encryption certificate.
+	.PARAMETER DnsName
+		DnsName to use when creating certificate.
+	.EXAMPLE
+		PS> New-EncryptionCertificate -DnsName "kpsinghchouhan"
+#>
 function New-EncryptionCertificate {
     [CmdletBinding()]
     param (

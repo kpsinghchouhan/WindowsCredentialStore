@@ -1,3 +1,15 @@
+<#
+	.SYNOPSIS
+		This command removes stored PSCredential from local file system.
+	.DESCRIPTION
+		This command removes stored PSCredential from local file system.
+    .PARAMETER Target
+		Reference name for credential.
+    .PARAMETER StorePath
+		Path on local file system where credential is stored.
+	.EXAMPLE
+		PS> Remove-StoredCredential -Target "Test"
+#>
 function Remove-StoredCredential {
     [CmdletBinding()]
     param (

@@ -1,3 +1,15 @@
+<#
+	.SYNOPSIS
+		This command retrieves stored PSCredential from local file system.
+	.DESCRIPTION
+		This command retrieves stored PSCredential from local file system.
+    .PARAMETER Target
+		Reference name for credential.
+    .PARAMETER StorePath
+		Path on local file system where credential is stored.
+	.EXAMPLE
+		PS> $credential = Get-StoredCredential -Target "Test"
+#>
 function Get-StoredCredential {
     [CmdletBinding()]
     param (

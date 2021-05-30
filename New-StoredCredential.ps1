@@ -1,3 +1,22 @@
+<#
+	.SYNOPSIS
+		This command stores a PSCredential on local file system.
+	.DESCRIPTION
+		This command stores a a PSCredential on local file system.
+        UserName is stored in plain text format while Password is
+        encrypted using document encryption certificate.
+	.PARAMETER Credential
+		Credential to store on local file system.
+    .PARAMETER EncryptionCertificateName
+		Document encryption certificate to use for encryption.
+    .PARAMETER Target
+		Reference name for credential.
+    .PARAMETER StorePath
+		Path on local file system where credential will be stored.
+	.EXAMPLE
+		PS> $credential = Get-Credential
+            New-StoredCredential -Credential $credential -EncryptionCertificateName "kpsinghchouhan" -Target "Test"
+#>
 function New-StoredCredential {
     [CmdletBinding()]
     param (
