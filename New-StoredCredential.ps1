@@ -20,12 +20,13 @@ function New-StoredCredential {
     )
     
     begin {
-        if (-not (Test-Path $StorePath) ) {
-            New-Item -Path $StorePath -ItemType "Directory"
-        }
+        
     }
     
     process {
+        if (-not (Test-Path $StorePath) ) {
+            New-Item -Path $StorePath -ItemType "Directory"
+        }
         $userNameFile = Join-Path -Path $StorePath -ChildPath "${Target}.UserName.txt"
         $passwordFile = Join-Path -Path $StorePath -ChildPath "${Target}.Password.txt"
         Set-Content -Path $userNameFile -Value $Credential.UserName
