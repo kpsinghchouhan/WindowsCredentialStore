@@ -46,6 +46,11 @@ function New-StoredCredential {
         if (-not (Test-Path $StorePath) ) {
             New-Item -Path $StorePath -ItemType "Directory"
         }
+        $encryptionCertificate = Get-ChildItem "Cert:\CurrentUser\My" | Where-Object { $_.Subject -eq "CN=${DnsName}" }
+        if ($null -eq $encryptionCertificate) {
+            Write-Error "Document encryption certificate does not exist with name: ${EncryptionCertificateName}"
+            return
+        }
         $userNameFile = Join-Path -Path $StorePath -ChildPath "${Target}.UserName.txt"
         $passwordFile = Join-Path -Path $StorePath -ChildPath "${Target}.Password.txt"
         Set-Content -Path $userNameFile -Value $Credential.UserName
