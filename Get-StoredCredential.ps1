@@ -18,6 +18,10 @@ function Get-StoredCredential {
     process {
         $userNameFile = Join-Path -Path $StorePath -ChildPath "${Target}.UserName.txt"
         $passwordFile = Join-Path -Path $StorePath -ChildPath "${Target}.Password.txt"
+        if ((-not (Test-Path $userNameFile)) -or (-not (Test-Path $userNameFile))) {
+            Write-Host "Credential not found for Target: ${Target}"
+            return $null
+        }
         $userName = Get-Content $userNameFile
         $password = Unprotect-CmsMessage -Path $passwordFile
         $secureStringPassword = ConvertTo-SecureString $password -AsPlainText -Force
